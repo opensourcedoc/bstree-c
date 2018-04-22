@@ -128,6 +128,28 @@ static void _bstree_in_order(Node *node)
     _bstree_in_order(node->right);
 }
 
+static void _bstree_post_order(Node *node);
+
+void bstree_post_order(BSTree *self)
+{
+    assert(self);
+    
+    _bstree_post_order(self->root);
+    
+    printf("\n");
+}
+
+static void _bstree_post_order(Node *node)
+{
+    if (!node) {
+        return;
+    }
+    
+    _bstree_post_order(node->left);
+    _bstree_post_order(node->right);
+    printf("%d ", node->data);
+}
+
 static void _bstree_free(void *node);
 
 void bstree_free(void *self)
