@@ -15,5 +15,6 @@ void bstree_free(void *self);
 
 // Tree Traversal
 void bstree_pre_order(BSTree *self);
+void bstree_in_order(BSTree *self);
 
 #endif // BSTREE_H

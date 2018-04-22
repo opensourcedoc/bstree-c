@@ -14,6 +14,7 @@
 bool test_tree_is_empty();
 bool test_tree_insert();
 bool test_tree_pre_order();
+bool test_tree_in_order();
 bool test_tree_pre_order_iter();
 
 int main()
@@ -21,6 +22,7 @@ int main()
     TEST(test_tree_is_empty());
     TEST(test_tree_insert());
     TEST(test_tree_pre_order());
+    TEST(test_tree_in_order());
     TEST(test_tree_pre_order_iter());
     
     return 0;
@@ -118,7 +120,36 @@ bool test_tree_pre_order()
         }
     }
 
+    printf("pre-order: ");
     bstree_pre_order(tr);
+
+BSTREE_FREE:
+    bstree_free(tr);
+    
+    if (failed) {
+        return false;
+    }
+    
+    return true;
+}
+
+bool test_tree_in_order()
+{
+    bool failed = false;
+    
+    BSTree *tr = bstree_new();
+    
+    int in[] = {4, 2, 6, 1, 3, 5, 7};
+    
+    for (size_t i = 0; i < 7; i++) {
+        if (!bstree_insert(tr, in[i])) {
+            failed = true;
+            goto BSTREE_FREE;
+        }
+    }
+
+    printf("in-order: ");
+    bstree_in_order(tr);
 
 BSTREE_FREE:
     bstree_free(tr);

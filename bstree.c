@@ -106,6 +106,28 @@ static void _bstree_pre_order(Node *node)
     _bstree_pre_order(node->right);
 }
 
+static void _bstree_in_order(Node *node);
+
+void bstree_in_order(BSTree *self)
+{
+    assert(self);
+    
+    _bstree_in_order(self->root);
+    
+    printf("\n");
+}
+
+static void _bstree_in_order(Node *node)
+{
+    if (!node) {
+        return;
+    }
+    
+    _bstree_in_order(node->left);
+    printf("%d ", node->data);
+    _bstree_in_order(node->right);
+}
+
 static void _bstree_free(void *node);
 
 void bstree_free(void *self)
