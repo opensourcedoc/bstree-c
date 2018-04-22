@@ -15,6 +15,7 @@
 
 int main()
 {
+    // Test tree manipulation.
     TEST(test_tree_is_empty());
     TEST(test_tree_insert());
     TEST(test_tree_min());
@@ -22,6 +23,8 @@ int main()
     TEST(test_tree_delete_leaf());
     TEST(test_tree_delete_one_child());
     TEST(test_tree_delete_two_childs());
+    
+    // Test tree traversal.
     TEST(test_tree_pre_order());
     TEST(test_tree_in_order());
     TEST(test_tree_post_order());
