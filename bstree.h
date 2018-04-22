@@ -13,4 +13,7 @@ bool bstree_find(BSTree *self, int value);
 bool bstree_insert(BSTree *self, int value);
 void bstree_free(void *self);
 
+// Tree Traversal
+void bstree_pre_order(BSTree *self);
+
 #endif // BSTREE_H

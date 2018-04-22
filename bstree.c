@@ -84,6 +84,28 @@ static bool _bstree_insert(Node **node, int value)
     }
 }
 
+static void _bstree_pre_order(Node *node);
+
+void bstree_pre_order(BSTree *self)
+{
+    assert(self);
+    
+    _bstree_pre_order(self->root);
+    
+    printf("\n");
+}
+
+static void _bstree_pre_order(Node *node)
+{
+    if (!node) {
+        return;
+    }
+
+    printf("%d ", node->data);
+    _bstree_pre_order(node->left);
+    _bstree_pre_order(node->right);
+}
+
 static void _bstree_free(void *node);
 
 void bstree_free(void *self)
