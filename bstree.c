@@ -56,16 +56,24 @@ bool _bstree_find(Node *node, int value)
     }
 }
 
+static int _bstree_min(Node *node);
+
 int bstree_min(BSTree *self)
 {
     assert(!bstree_is_empty(self));
     
-    Node *curr = self->root;
-    while (curr->left) {
-        curr = curr->left;
+    return _bstree_min(self->root);
+}
+
+static int _bstree_min(Node *node)
+{
+    assert(node);
+    
+    while (node->left) {
+        node = node->left;
     }
     
-    return curr->data;
+    return node->data;
 }
 
 int bstree_max(BSTree *self)
@@ -106,6 +114,53 @@ static bool _bstree_insert(Node **node, int value)
     } else {
         return _bstree_insert(&((*node)->right), value);
     }
+}
+
+static bool _bstree_delete(Node **node, int value);
+
+bool bstree_delete(BSTree *self, int value)
+{
+    if (bstree_is_empty(self)) {
+        return false;
+    }
+    
+    return _bstree_delete(&(self->root), value);
+}
+
+
+
+static bool _bstree_delete(Node **node, int value)
+{
+    if (!(*node)) {
+        return false;
+    }
+    
+    if ((*node)->data > value) {
+        return _bstree_delete(&((*node)->left), value);
+    }
+    
+    if ((*node)->data < value) {
+        return _bstree_delete(&((*node)->right), value);
+    }
+    
+    if (!((*node)->left)) {
+        Node *temp = (*node)->right;
+        free(*node);
+        *node = temp;
+    } else if (!((*node)->right)) {
+        Node *temp = (*node)->left;
+        free(*node);
+        *node = temp;
+    } else {
+        int min = _bstree_min((*node)->right);
+        (*node)->data = min;
+        if (!_bstree_delete(&((*node)->right), min)) {
+            perror("Unable to delete subsequent node");
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 static void _bstree_pre_order(Node *node);
