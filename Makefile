@@ -15,7 +15,8 @@ run: compile
 	echo $$?
 
 compile:
-	$(CC) -Wall -g -o $(TARGET) test_bstree.c bstree.c bstiter.c bstnode.c -std=c99
+	$(CC) -Wall -g -o $(TARGET) test_bstree.c test_manipulation.c \
+		bstree.c bstiter.c bstnode.c -std=c99
 
 clean:
 	$(RM) $(RMFLAG) $(TARGET)
