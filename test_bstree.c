@@ -13,6 +13,8 @@
 
 bool test_tree_is_empty();
 bool test_tree_insert();
+bool test_tree_min();
+bool test_tree_max();
 bool test_tree_pre_order();
 bool test_tree_in_order();
 bool test_tree_post_order();
@@ -22,6 +24,8 @@ int main()
 {
     TEST(test_tree_is_empty());
     TEST(test_tree_insert());
+    TEST(test_tree_min());
+    TEST(test_tree_max());
     TEST(test_tree_pre_order());
     TEST(test_tree_in_order());
     TEST(test_tree_post_order());
@@ -99,6 +103,66 @@ bool test_tree_insert()
 
 BSTREE_FREE:
     bstree_free(t);
+    
+    if (failed) {
+        return false;
+    }
+    
+    return true;
+}
+
+bool test_tree_min()
+{
+    bool failed = false;
+    
+    BSTree *tr = bstree_new();
+    
+    int in[] = {4, 2, 6, 1, 3, 5, 7};
+    
+    for (size_t i = 0; i < 7; i++) {
+        if (!bstree_insert(tr, in[i])) {
+            failed = true;
+            goto BSTREE_FREE;
+        }
+    }
+
+    if (bstree_min(tr) != 1) {
+        failed = true;
+        goto BSTREE_FREE;
+    }
+
+BSTREE_FREE:
+    bstree_free(tr);
+    
+    if (failed) {
+        return false;
+    }
+    
+    return true;
+}
+
+bool test_tree_max()
+{
+    bool failed = false;
+    
+    BSTree *tr = bstree_new();
+    
+    int in[] = {4, 2, 6, 1, 3, 5, 7};
+    
+    for (size_t i = 0; i < 7; i++) {
+        if (!bstree_insert(tr, in[i])) {
+            failed = true;
+            goto BSTREE_FREE;
+        }
+    }
+
+    if (bstree_max(tr) != 7) {
+        failed = true;
+        goto BSTREE_FREE;
+    }
+
+BSTREE_FREE:
+    bstree_free(tr);
     
     if (failed) {
         return false;

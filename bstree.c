@@ -56,6 +56,30 @@ bool _bstree_find(Node *node, int value)
     }
 }
 
+int bstree_min(BSTree *self)
+{
+    assert(!bstree_is_empty(self));
+    
+    Node *curr = self->root;
+    while (curr->left) {
+        curr = curr->left;
+    }
+    
+    return curr->data;
+}
+
+int bstree_max(BSTree *self)
+{
+    assert(!bstree_is_empty(self));
+    
+    Node *curr = self->root;
+    while (curr->right) {
+        curr = curr->right;
+    }
+    
+    return curr->data;
+}
+
 static bool _bstree_insert(Node **node, int value);
 
 bool bstree_insert(BSTree *self, int value)
