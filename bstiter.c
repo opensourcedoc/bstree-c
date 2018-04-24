@@ -14,7 +14,7 @@ struct snode {
     SNode *prev;
 };
 
-// BSTIter is a stack.
+// BSTIter is a deque.
 struct bstIter {
     SNode *head;
     SNode *tail;
