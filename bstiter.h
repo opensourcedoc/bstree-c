@@ -5,6 +5,11 @@
 
 typedef struct bstIter BSTIter;
 
+// Recursive Tree Traversal
+void bstree_pre_order(BSTree *tree);
+void bstree_in_order(BSTree *tree);
+void bstree_post_order(BSTree *tree);
+
 // Pre-order Traversal Iterator.
 BSTIter * bstree_pre_order_start(BSTree *tree);
 bool bstree_pre_order_next(BSTIter *iter, int *out);

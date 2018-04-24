@@ -30,6 +30,71 @@ static Node * bstiter_shift(BSTIter *self);
 static bool bstiter_push(BSTIter *self, Node *data);
 static Node * bstiter_pop(BSTIter *self);
 
+static void _bstree_pre_order(Node *node);
+
+void bstree_pre_order(BSTree *self)
+{
+    assert(self);
+    
+    _bstree_pre_order(self->root);
+    
+    printf("\n");
+}
+
+static void _bstree_pre_order(Node *node)
+{
+    if (!node) {
+        return;
+    }
+
+    printf("%d ", node->data);
+    _bstree_pre_order(node->left);
+    _bstree_pre_order(node->right);
+}
+
+static void _bstree_in_order(Node *node);
+
+void bstree_in_order(BSTree *self)
+{
+    assert(self);
+    
+    _bstree_in_order(self->root);
+    
+    printf("\n");
+}
+
+static void _bstree_in_order(Node *node)
+{
+    if (!node) {
+        return;
+    }
+    
+    _bstree_in_order(node->left);
+    printf("%d ", node->data);
+    _bstree_in_order(node->right);
+}
+
+static void _bstree_post_order(Node *node);
+
+void bstree_post_order(BSTree *self)
+{
+    assert(self);
+    
+    _bstree_post_order(self->root);
+    
+    printf("\n");
+}
+
+static void _bstree_post_order(Node *node)
+{
+    if (!node) {
+        return;
+    }
+    
+    _bstree_post_order(node->left);
+    _bstree_post_order(node->right);
+    printf("%d ", node->data);
+}
 
 BSTIter * bstree_pre_order_start(BSTree *tree)
 {
