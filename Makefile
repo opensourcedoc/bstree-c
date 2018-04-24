@@ -14,11 +14,14 @@ run: compile
 	./$(TARGET)
 	echo $$?
 
-compile:
+compile: crline
 	$(CC) -Wall -g -o $(TARGET) test_bstree.c \
 		test_manipulation.c test_traversal.c \
 		bstree.c bstiter.c bstnode.c \
 		-std=c99
+
+crline:
+	perl -pi -e "s{^[ \t]+$$}{}g;" *
 
 clean:
 	$(RM) $(RMFLAG) $(TARGET)
