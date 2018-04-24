@@ -15,6 +15,11 @@ BSTIter * bstree_pre_order_start_r(BSTree *tree);
 bool bstree_pre_order_next_r(BSTIter *iter, int *out);
 bool bstree_pre_order_end_r(BSTIter *iter);
 
+// Recursive In-order Traversal Iterator.
+BSTIter * bstree_in_order_start_r(BSTree *tree);
+bool bstree_in_order_next_r(BSTIter *iter, int *out);
+bool bstree_in_order_end_r(BSTIter *iter);
+
 // Non-Recursive Pre-order Traversal Iterator.
 BSTIter * bstree_pre_order_start(BSTree *tree);
 bool bstree_pre_order_next(BSTIter *iter, int *out);

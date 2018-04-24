@@ -29,6 +29,7 @@ int main()
     TEST(test_tree_in_order());
     TEST(test_tree_post_order());
     TEST(test_tree_pre_order_iter_r());
+    TEST(test_tree_in_order_iter_r());
     TEST(test_tree_pre_order_iter());
     TEST(test_tree_in_order_iter());
     TEST(test_tree_post_order_iter());
