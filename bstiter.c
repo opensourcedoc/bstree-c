@@ -29,6 +29,8 @@ static Node * bstiter_shift(BSTIter *self);
 
 BSTIter * bstree_pre_order_start(BSTree *tree)
 {
+    assert(tree);
+
     BSTIter *iter = bstiter_new();
     if (!iter) {
         return iter;
@@ -71,6 +73,57 @@ bool bstree_pre_order_next(BSTIter *iter, int *out)
 }
 
 bool bstree_pre_order_end(BSTIter *iter)
+{
+    return bstiter_is_empty(iter);
+}
+
+BSTIter * bstree_in_order_start(BSTree *tree)
+{
+    assert(tree);
+
+    BSTIter *iter = bstiter_new();
+    if (iter) {
+        return iter;
+    }
+    
+    Node *curr = tree->root;
+    while (curr) {
+        if (!bstiter_unshift(iter, tree->root)) {
+            bstiter_free(iter);
+            iter = NULL;
+            return iter;
+        }
+        
+        curr = curr->left;
+    }
+    
+    return iter;
+}
+
+bool bstree_in_order_next(BSTIter *iter, int *out)
+{
+    assert(iter);
+    
+    Node *curr = bstiter_shift(iter);
+    
+    *out = curr->data;
+    
+    if (curr->right) {
+        curr = curr->right;
+        
+        while (curr) {
+            if (!bstiter_unshift(iter, curr)) {
+                return false;
+            }
+            
+            curr = curr->left;
+        }
+    }
+    
+    return true;
+}
+
+bool bstree_in_order_end(BSTIter *iter)
 {
     return bstiter_is_empty(iter);
 }
