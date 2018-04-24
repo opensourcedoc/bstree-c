@@ -177,3 +177,48 @@ BSTREE_FREE:
     
     return true;
 }
+
+bool test_tree_post_order_iter()
+{
+    bool failed = false;
+
+    BSTree *tr = bstree_new();
+    
+    int in[] = {4, 2, 6, 1, 3, 5, 7};
+    
+    for (size_t i = 0; i < 7; i++) {
+        if (!bstree_insert(tr, in[i])) {
+            failed = true;
+            goto BSTREE_FREE;
+        }
+    }
+    
+    BSTIter *iter = bstree_post_order_start(tr);
+    int arr[] = {1, 3, 2, 5, 7, 6, 4};
+    size_t i = 0;
+    while (!bstree_post_order_end(iter)) {
+        int n = 0;
+        if (!bstree_post_order_next(iter, &n)) {
+            failed = true;
+            goto BSTREE_ITER_TREE;
+        }
+        
+        if (n != arr[i]) {
+            failed = true;
+            goto BSTREE_ITER_TREE;
+        }
+
+        i++;
+    }
+    
+BSTREE_ITER_TREE:
+    bstiter_free(iter);
+BSTREE_FREE:
+    bstree_free(tr);
+    
+    if (failed) {
+        return false;
+    }
+    
+    return true;
+}
