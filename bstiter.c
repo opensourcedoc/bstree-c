@@ -11,19 +11,21 @@ typedef struct snode SNode;
 struct snode {
     Node *data;
     SNode *next;
+    SNode *prev;
 };
 
 // BSTIter is a stack.
 struct bstIter {
-    SNode *top;
+    SNode *head;
+    SNode *tail;
 };
 
 static SNode * snode_new(Node *value);
 static BSTIter * bstiter_new();
 static bool bstiter_is_empty(BSTIter *self);
 static SNode * bstiter_peek(BSTIter* self);
-static bool bstiter_push(BSTIter *self, Node *data);
-static Node * bstiter_pop(BSTIter *self);
+static bool bstiter_unshift(BSTIter *self, Node *data);
+static Node * bstiter_shift(BSTIter *self);
 
 BSTIter * bstree_pre_order_start(BSTree *tree)
 {
@@ -33,7 +35,7 @@ BSTIter * bstree_pre_order_start(BSTree *tree)
     }
     
     if (tree->root) {
-        if (!bstiter_push(iter, tree->root)) {
+        if (!bstiter_unshift(iter, tree->root)) {
             perror("Failed to push data to iter");
             bstiter_free(iter);
             iter = NULL;
@@ -46,19 +48,19 @@ BSTIter * bstree_pre_order_start(BSTree *tree)
 
 bool bstree_pre_order_next(BSTIter *iter, int *out)
 {
-    Node *n = bstiter_pop(iter);
+    Node *n = bstiter_shift(iter);
     if (!n) {
         return false;
     }
 
     if (n->right) {
-        if (!bstiter_push(iter, n->right)) {
+        if (!bstiter_unshift(iter, n->right)) {
             return false;
         }
     }
 
     if (n->left) {
-        if (!bstiter_push(iter, n->left)) {
+        if (!bstiter_unshift(iter, n->left)) {
             return false;
         }
     }
@@ -81,6 +83,7 @@ static SNode * snode_new(Node *value)
     }
     
     sn->data = value;
+    sn->prev = NULL;
     sn->next = NULL;
     
     return sn;
@@ -93,7 +96,7 @@ static BSTIter * bstiter_new()
         return iter;
     }
     
-    iter->top = NULL;
+    iter->head = NULL;
     
     return iter;
 }
@@ -102,7 +105,7 @@ static bool bstiter_is_empty(BSTIter *self)
 {
     assert(self);
     
-    if (self->top) {
+    if (self->head) {
         return false;
     }
     
@@ -113,22 +116,34 @@ static SNode * bstiter_peek(BSTIter* self)
 {
     assert(!bstiter_is_empty(self));
     
-    return self->top;
+    return self->head;
 }
 
-static Node * bstiter_pop(BSTIter *self)
+static Node * bstiter_shift(BSTIter *self)
 {
     assert(!bstiter_is_empty(self));
-    
-    SNode * curr = self->top;
-    Node * popped = curr->data;
-    self->top = curr->next;
+
+    if (self->head == self->tail) {
+        Node *popped = self->head->data;
+        
+        free(self->head);
+        self->head = NULL;
+        self->tail = NULL;
+        
+        return popped;
+    }
+
+    SNode * curr = self->head;
+    Node *popped = curr->data;
+
+    self->head = curr->next;
     free(curr);
+    self->head->prev = NULL;
     
     return popped;
 }
 
-static bool bstiter_push(BSTIter *self, Node *value)
+static bool bstiter_unshift(BSTIter *self, Node *value)
 {
     assert(self);
     
@@ -137,13 +152,15 @@ static bool bstiter_push(BSTIter *self, Node *value)
         return false;
     }
     
-    if (!(self->top)) {
-        self->top = sn;
+    if (!(self->head)) {
+        self->head = sn;
+        self->tail = sn;
         return true;
     }
     
-    sn->next = self->top;
-    self->top = sn;
+    sn->next = self->head;
+    self->head->prev = sn;
+    self->head = sn;
     
     return true;
 }
@@ -154,7 +171,7 @@ void bstiter_free(void *self)
         return;
     }
     
-    SNode *curr = ((BSTIter *) self)->top;
+    SNode *curr = ((BSTIter *) self)->head;
     SNode *temp;
     while (curr) {
         temp = curr;
