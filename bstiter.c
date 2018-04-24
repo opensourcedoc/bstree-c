@@ -184,6 +184,49 @@ bool bstree_in_order_end_r(BSTIter *iter)
     return bstiter_is_empty(iter);
 }
 
+static void _bstree_post_order_iter(BSTIter *iter, Node *node);
+
+BSTIter * bstree_post_order_start_r(BSTree *tree)
+{
+    assert(tree);
+    
+    BSTIter *iter = bstiter_new();
+    if (!iter) {
+        return iter;
+    }
+    
+    _bstree_post_order_iter(iter, tree->root);
+    
+    return iter;
+}
+
+static void _bstree_post_order_iter(BSTIter *iter, Node *node)
+{
+    if (!node) {
+        return;
+    }
+
+    _bstree_post_order_iter(iter, node->left);
+    _bstree_post_order_iter(iter, node->right);
+    bstiter_push(iter, node);
+}
+
+bool bstree_post_order_next_r(BSTIter *iter, int *out)
+{
+    Node *node = bstiter_shift(iter);
+    if (!node) {
+        return false;
+    }
+    
+    *out = node->data;
+    
+    return true;
+}
+
+bool bstree_post_order_end_r(BSTIter *iter)
+{
+    return bstiter_is_empty(iter);
+}
 
 BSTIter * bstree_pre_order_start(BSTree *tree)
 {
