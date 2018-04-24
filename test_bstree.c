@@ -23,7 +23,7 @@ int main()
     TEST(test_tree_delete_leaf());
     TEST(test_tree_delete_one_child());
     TEST(test_tree_delete_two_childs());
-    
+
     // Test tree traversal.
     TEST(test_tree_pre_order());
     TEST(test_tree_in_order());
@@ -34,6 +34,6 @@ int main()
     TEST(test_tree_pre_order_iter());
     TEST(test_tree_in_order_iter());
     TEST(test_tree_post_order_iter());
-    
+
     return 0;
 }
