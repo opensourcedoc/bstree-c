@@ -1,8 +1,8 @@
 #include "bstnode.h"
 
-Node * node_new(int value)
+NodeInt * node_new(int value)
 {
-    Node *n = malloc(sizeof(Node));
+    NodeInt *n = malloc(sizeof(NodeInt));
 
     if (!n) {
         return n;

@@ -8,9 +8,9 @@ bool test_tree_is_empty()
 {
     bool failed = false;
 
-    BSTree *t = algo_bstree_int_new();
+    BSTreeInt *t = algo_bstree_int_new();
     if (!t) {
-        perror("Failed to allocate BSTree t");
+        perror("Failed to allocate BSTreeInt t");
         return false;
     }
 
@@ -34,9 +34,9 @@ bool test_tree_insert()
 {
     bool failed = false;
 
-    BSTree *t = algo_bstree_int_new();
+    BSTreeInt *t = algo_bstree_int_new();
     if (!t) {
-        perror("Failed to allocate BSTree t");
+        perror("Failed to allocate BSTreeInt t");
         return false;
     }
 
@@ -85,7 +85,7 @@ bool test_tree_min()
 {
     bool failed = false;
 
-    BSTree *tr = algo_bstree_int_new();
+    BSTreeInt *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -115,7 +115,7 @@ bool test_tree_max()
 {
     bool failed = false;
 
-    BSTree *tr = algo_bstree_int_new();
+    BSTreeInt *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -145,7 +145,7 @@ bool test_tree_delete_leaf()
 {
     bool failed = false;
 
-    BSTree *tr = algo_bstree_int_new();
+    BSTreeInt *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -189,7 +189,7 @@ bool test_tree_delete_one_child()
 {
     bool failed = false;
 
-    BSTree *tr = algo_bstree_int_new();
+    BSTreeInt *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5};
 
@@ -233,7 +233,7 @@ bool test_tree_delete_two_childs()
 {
     bool failed = false;
 
-    BSTree *tr = algo_bstree_int_new();
+    BSTreeInt *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 

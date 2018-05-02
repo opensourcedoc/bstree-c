@@ -3,8 +3,8 @@
 
 #include "bstnode.h"
 
-struct bstree {
-    Node *root;
+struct bstree_int {
+    NodeInt *root;
 };
 
 #endif  // BSTREE_INTERNAL_H

@@ -3,14 +3,14 @@
 
 #include <stdlib.h>
 
-typedef struct node Node;
+typedef struct node_int NodeInt;
 
-struct node {
+struct node_int {
     int data;
-    Node *left;
-    Node *right;
+    NodeInt *left;
+    NodeInt *right;
 };
 
-Node * node_new(int value);
+NodeInt * node_new(int value);
 
 #endif  // BSTNODE_H
