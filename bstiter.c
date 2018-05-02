@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "bstree.h"
-#include "bstree_internal.h"
+#include "bstree_internal.c"
 #include "bstnode.h"
 #include "bstiter.h"
 
