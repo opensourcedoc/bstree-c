@@ -3,7 +3,7 @@
 
 #include "bstree.h"
 
-typedef struct bstIter BSTIterInt;
+typedef struct bstiter_int BSTIterInt;
 
 // Recursive Tree Traversal
 void algo_bstree_int_pre_order(BSTreeInt *tree);

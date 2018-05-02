@@ -15,7 +15,7 @@ struct snode {
 };
 
 // BSTIterInt is a deque.
-struct bstIter {
+struct bstiter_int {
     SNodeInt *head;
     SNodeInt *tail;
 };
