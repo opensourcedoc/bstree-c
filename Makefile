@@ -1,27 +1,26 @@
 CC=gcc
-MEM_CHECK=valgrind
 RM=rm
 RMFLAG=-rf
+SOURCE_DIR=src
+TEST_DIR=test
 TARGET=test_bstree.out
+SRC_OBJS := $(echo $(SOURCE_DIR)/*.o)
 
-all: run
+.PHONY: clean test
 
-check: compile
-	$(MEM_CHECK) ./$(TARGET)
-	echo $$?
+memo: compile
+	make -C $(TEST_DIR) memo
 
-run: compile
-	./$(TARGET)
-	echo $$?
+test: compile
+	make -C $(TEST_DIR) test
 
-compile: crline
-	$(CC) -Wall -g -o $(TARGET) test_bstree.c \
-		test_manipulation.c test_traversal.c \
-		bstree.c bstiter.c bstnode.c \
-		-std=c99
+compile: $(SOURCE_DIR)/*.o
 
 crline:
-	perl -pi -e "s{^[ \t]+$$}{}g;" *
+	perl -pi -e "s{\$+$$}{}g;" *
+
+$(SOURCE_DIR)/*.o:
+	make -C $(SOURCE_DIR)
 
 clean:
-	$(RM) $(RMFLAG) $(TARGET)
+	$(RM) $(RMFLAG) $(TEST_DIR)/$(TARGET) $(SOURCE_DIR)/*.o $(TEST_DIR)/*.o
