@@ -13,7 +13,7 @@ int node_data(Node *node)
     return node->data;
 }
 
-BSTree * bstree_new()
+BSTree * algo_bstree_int_new()
 {
     BSTree *t = malloc(sizeof(BSTree));
     if (!t) {
@@ -25,23 +25,23 @@ BSTree * bstree_new()
     return t;
 }
 
-bool bstree_is_empty(BSTree* self)
+bool algo_bstree_int_is_empty(BSTree* self)
 {
     assert(self);
 
     return self->root == NULL;
 }
 
-static bool _bstree_find(Node *node, int value);
+static bool _algo_bstree_int_find(Node *node, int value);
 
-bool bstree_find(BSTree *self, int value)
+bool algo_bstree_int_find(BSTree *self, int value)
 {
     assert(self);
 
-    return _bstree_find(self->root, value);
+    return _algo_bstree_int_find(self->root, value);
 }
 
-bool _bstree_find(Node *node, int value)
+bool _algo_bstree_int_find(Node *node, int value)
 {
     if (!node) {
         return false;
@@ -50,22 +50,22 @@ bool _bstree_find(Node *node, int value)
     if (node->data == value) {
         return true;
     } else if (node->data > value) {
-        return _bstree_find(node->left, value);
+        return _algo_bstree_int_find(node->left, value);
     } else {
-        return _bstree_find(node->right, value);
+        return _algo_bstree_int_find(node->right, value);
     }
 }
 
-static int _bstree_min(Node *node);
+static int _algo_bstree_int_min(Node *node);
 
-int bstree_min(BSTree *self)
+int algo_bstree_int_min(BSTree *self)
 {
-    assert(!bstree_is_empty(self));
+    assert(!algo_bstree_int_is_empty(self));
 
-    return _bstree_min(self->root);
+    return _algo_bstree_int_min(self->root);
 }
 
-static int _bstree_min(Node *node)
+static int _algo_bstree_int_min(Node *node)
 {
     assert(node);
 
@@ -76,9 +76,9 @@ static int _bstree_min(Node *node)
     return node->data;
 }
 
-int bstree_max(BSTree *self)
+int algo_bstree_int_max(BSTree *self)
 {
-    assert(!bstree_is_empty(self));
+    assert(!algo_bstree_int_is_empty(self));
 
     Node *curr = self->root;
     while (curr->right) {
@@ -88,16 +88,16 @@ int bstree_max(BSTree *self)
     return curr->data;
 }
 
-static bool _bstree_insert(Node **node, int value);
+static bool _algo_bstree_int_insert(Node **node, int value);
 
-bool bstree_insert(BSTree *self, int value)
+bool algo_bstree_int_insert(BSTree *self, int value)
 {
     assert(self);
 
-    return _bstree_insert(&(self->root), value);
+    return _algo_bstree_int_insert(&(self->root), value);
 }
 
-static bool _bstree_insert(Node **node, int value)
+static bool _algo_bstree_int_insert(Node **node, int value)
 {
     if (!(*node)) {
         *node = node_new(value);
@@ -110,37 +110,37 @@ static bool _bstree_insert(Node **node, int value)
     }
 
     if ((*node)->data > value) {
-        return _bstree_insert(&((*node)->left), value);
+        return _algo_bstree_int_insert(&((*node)->left), value);
     } else {
-        return _bstree_insert(&((*node)->right), value);
+        return _algo_bstree_int_insert(&((*node)->right), value);
     }
 }
 
-static bool _bstree_delete(Node **node, int value);
+static bool _algo_bstree_int_delete(Node **node, int value);
 
-bool bstree_delete(BSTree *self, int value)
+bool algo_bstree_int_delete(BSTree *self, int value)
 {
-    if (bstree_is_empty(self)) {
+    if (algo_bstree_int_is_empty(self)) {
         return false;
     }
 
-    return _bstree_delete(&(self->root), value);
+    return _algo_bstree_int_delete(&(self->root), value);
 }
 
 
 
-static bool _bstree_delete(Node **node, int value)
+static bool _algo_bstree_int_delete(Node **node, int value)
 {
     if (!(*node)) {
         return false;
     }
 
     if ((*node)->data > value) {
-        return _bstree_delete(&((*node)->left), value);
+        return _algo_bstree_int_delete(&((*node)->left), value);
     }
 
     if ((*node)->data < value) {
-        return _bstree_delete(&((*node)->right), value);
+        return _algo_bstree_int_delete(&((*node)->right), value);
     }
 
     if (!((*node)->left)) {
@@ -152,9 +152,9 @@ static bool _bstree_delete(Node **node, int value)
         free(*node);
         *node = temp;
     } else {
-        int min = _bstree_min((*node)->right);
+        int min = _algo_bstree_int_min((*node)->right);
         (*node)->data = min;
-        if (!_bstree_delete(&((*node)->right), min)) {
+        if (!_algo_bstree_int_delete(&((*node)->right), min)) {
             perror("Unable to delete subsequent node");
             return false;
         }
@@ -163,24 +163,24 @@ static bool _bstree_delete(Node **node, int value)
     return true;
 }
 
-static void _bstree_free(void *node);
+static void _algo_bstree_int_free(void *node);
 
-void bstree_free(void *self)
+void algo_bstree_int_free(void *self)
 {
     if (!self) {
         return;
     }
 
-    _bstree_free(((BSTree *) self)->root);
+    _algo_bstree_int_free(((BSTree *) self)->root);
     free(self);
 }
 
-static void _bstree_free(void *node)
+static void _algo_bstree_int_free(void *node)
 {
     if (!node) {
         return;
     }
-    _bstree_free(((Node *) node)->left);
-    _bstree_free(((Node *) node)->right);
+    _algo_bstree_int_free(((Node *) node)->left);
+    _algo_bstree_int_free(((Node *) node)->right);
     free(node);
 }
