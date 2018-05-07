@@ -35,12 +35,6 @@ export TARGET
 SOURCE_DIR=src
 TEST_DIR=test
 
-ifeq ($(CC),cl)
-	OBJS := $(echo $(SOURCE_DIR)/*.obj $(TEST_DIR)/*.obj)
-else
-	OBJS := $(echo $(SOURCE_DIR)/*.o $(TEST_DIR)/*.o)
-endif
-
 .PHONY: all memo test compile trim clean
 
 all: test
@@ -51,7 +45,7 @@ memo: compile
 test: compile
 	$(MAKE) -C $(TEST_DIR) test
 
-compile: trim $(OBJS)
+compile: trim
 	$(MAKE) -C $(SOURCE_DIR) compile
 	$(MAKE) -C $(TEST_DIR) compile
 
