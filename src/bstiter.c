@@ -1,10 +1,10 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "bstree.h"
-#include "bstree_internal.c"
+#include "algo/bstree.h"
+#include "bstree_internal.h"
 #include "bstnode.h"
-#include "bstiter.h"
+#include "algo/bstiter.h"
 
 typedef struct snode SNodeInt;
 

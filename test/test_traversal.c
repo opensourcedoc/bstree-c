@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
-#include "bstree.h"
+#include "algo/bstree.h"
 #include "test_traversal.h"
 
 bool test_tree_pre_order()

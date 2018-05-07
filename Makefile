@@ -1,26 +1,59 @@
-CC=gcc
-RM=rm
-RMFLAG=-rf
+ifeq ($(OS),Windows_NT)
+    detected_OS := Windows
+else
+    detected_OS := $(shell sh -c 'uname -s 2>/dev/null || echo not')
+endif
+
+export detected_OS
+
+CC=
+
+ifndef CC
+	ifeq ($(detected_OS),Windows)
+		CC=cl
+	else ifeq ($(detected_OS),Darwin)
+		CC=clang
+	else
+		CC=gcc
+	endif
+endif
+
+export CC
+
+ifeq ($(detected_OS),Windows)
+	RM=del
+endif
+
+export RM
+
+ifndef TARGET
+	TARGET=Release
+endif
+
+export TARGET
+
 SOURCE_DIR=src
 TEST_DIR=test
-TARGET=test_bstree.out
-SRC_OBJS := $(echo $(SOURCE_DIR)/*.o)
+SRC_OBJS := $(echo $(SOURCE_DIR)/*.o $(TEST_DIR)/*.o)
 
-.PHONY: clean test
+.PHONY: all memo test compile trim clean
+
+all: test
 
 memo: compile
-	make -C $(TEST_DIR) memo
+	$(MAKE) -C $(TEST_DIR) memo
 
 test: compile
-	make -C $(TEST_DIR) test
+	$(MAKE) -C $(TEST_DIR) test
 
-compile: $(SOURCE_DIR)/*.o
+compile: trim $(SRC_OBJS)
+	$(MAKE) -C $(SOURCE_DIR) compile
+	$(MAKE) -C $(TEST_DIR) compile
 
-crline:
-	perl -pi -e "s{\$+$$}{}g;" *
-
-$(SOURCE_DIR)/*.o:
-	make -C $(SOURCE_DIR)
+trim:
+	$(MAKE) -C $(SOURCE_DIR) trim
+	$(MAKE) -C $(TEST_DIR) trim
 
 clean:
-	$(RM) $(RMFLAG) $(TEST_DIR)/$(TARGET) $(SOURCE_DIR)/*.o $(TEST_DIR)/*.o
+	$(MAKE) -C $(SOURCE_DIR) clean
+	$(MAKE) -C $(TEST_DIR) clean

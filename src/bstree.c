@@ -2,8 +2,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "bstree.h"
-#include "bstree_internal.c"
+#include "algo/bstree.h"
+#include "bstree_internal.h"
 #include "bstnode.h"
 
 int node_data(NodeInt *node)
