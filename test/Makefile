@@ -19,7 +19,9 @@ test:
 	./$(TEST_PROG)
 	echo $$?
 
-compile: $(OBJS)
+compile: $(TEST_PROG)
+
+$(TEST_PROG): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TEST_PROG) *.o $(SOURCE_DIR)/*.o -I../include
 
 %.o: %.c
