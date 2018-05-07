@@ -35,18 +35,18 @@ export TARGET
 SOURCE_DIR=src
 TEST_DIR=test
 
-.PHONY: all memo test compile trim clean
+.PHONY: all memo test compile_debug trim clean
 
 all: test
 
-memo: compile
+memo: compile_debug
 	$(MAKE) -C $(TEST_DIR) memo
 
-test: compile
+test: compile_debug
 	$(MAKE) -C $(TEST_DIR) test
 
-compile: trim
-	$(MAKE) -C $(SOURCE_DIR) compile
+compile_debug: trim
+	$(MAKE) -C $(SOURCE_DIR) compile_debug
 	$(MAKE) -C $(TEST_DIR) compile
 
 trim:

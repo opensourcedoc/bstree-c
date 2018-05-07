@@ -20,9 +20,12 @@ endif
 
 OBJS=bstree.o bstnode.o bstiter.o
 
-.PHONY: all compile trim clean
+.PHONY: all compile_debug compile trim clean
 
 all: compile
+
+compile_debug: CFLAGS := $(CFLAGS_DEBUG)
+compile_debug: compile
 
 compile: $(OBJS)
 
