@@ -1,8 +1,20 @@
+ifeq ($(detected_OS),Darwin)
+	ifeq ($(CC),cl)
+		CFLAGS_DEBUG=-O1 -Wall -Wextra -g -std=c99 -fsanitize=address -fno-omit-frame-pointer
+	else
+		CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
+	endif
+else
+	CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
+endif
+
+CFLAGS_RELEASE=-Wall -Wextra -O2 -std=c99
+
 ifndef CFLAGS
 	ifeq ($(TARGET),Debug)
-		CFLAGS=-Wall -Wextra -g -std=c99
+		CFLAGS=$(CFLAGS_DEBUG)
 	else
-		CFLAGS=-Wall -Wextra -O2 -std=c99
+		CFLAGS=$(CFLAGS_RELEASE)
 	endif
 endif
 

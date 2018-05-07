@@ -1,9 +1,15 @@
-ifndef CFLAGS
-	ifeq ($(TARGET),Debug)
-		CFLAGS=-Wall -Wextra -g -std=c99
+ifeq ($(detected_OS),Darwin)
+	ifeq ($(CC),cl)
+		CFLAGS_DEBUG=-O1 -Wall -Wextra -g -std=c99 -fsanitize=address -fno-omit-frame-pointer
 	else
-		CFLAGS=-Wall -Wextra -O2 -std=c99
+		CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
 	endif
+else
+	CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
+endif
+
+ifndef CFLAGS
+	CFLAGS=$(CFLAGS_DEBUG)
 endif
 
 MEM_CHECK=valgrind --quiet
