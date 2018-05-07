@@ -1,5 +1,5 @@
 ifeq ($(detected_OS),Darwin)
-	ifeq ($(CC),cl)
+	ifeq ($(CC),clang)
 		CFLAGS_DEBUG=-O1 -Wall -Wextra -g -std=c99 -fsanitize=address -fno-omit-frame-pointer
 	else
 		CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
