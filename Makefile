@@ -35,24 +35,37 @@ export TARGET
 SOURCE_DIR=src
 TEST_DIR=test
 
-.PHONY: all memo test compile_debug trim clean
+ifeq ($(detected_OS),Windows)
+	CONFIG=Makefile_win
+else
+	CONFIG=Makefile
+endif
 
-all: test
+.PHONY: all dynamic memo test compile_debug trim clean
 
-memo: compile_debug
-	$(MAKE) -C $(TEST_DIR) memo
+all: dynamic
 
-test: compile_debug
-	$(MAKE) -C $(TEST_DIR) test
+dynamic:
+	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) dynamic
 
-compile_debug: trim
-	$(MAKE) -C $(SOURCE_DIR) compile_debug
-	$(MAKE) -C $(TEST_DIR) compile
+static:
+	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) static
+
+memo: trim
+	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) compile_debug
+	$(MAKE) -C $(TEST_DIR) -f $(CONFIG) memo
+
+test: trim
+	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) compile_debug
+	$(MAKE) -C $(TEST_DIR) -f $(CONFIG) test
+
+compile:
+	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) compile
 
 trim:
-	$(MAKE) -C $(SOURCE_DIR) trim
-	$(MAKE) -C $(TEST_DIR) trim
+	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) trim
+	$(MAKE) -C $(TEST_DIR) -f $(CONFIG) trim
 
 clean:
-	$(MAKE) -C $(SOURCE_DIR) clean
-	$(MAKE) -C $(TEST_DIR) clean
+	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) clean
+	$(MAKE) -C $(TEST_DIR) -f $(CONFIG) clean

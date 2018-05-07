@@ -20,9 +20,24 @@ endif
 
 OBJS=bstree.o bstnode.o bstiter.o
 
+ifeq ($(detected_OS),Darwin)
+	DYNAMIC_LIB=libalgobstreei.dylib
+else
+	DYNAMIC_LIB=libalgobstreei.so
+endif
+
 .PHONY: all compile_debug compile trim clean
 
-all: compile
+all: dynamic
+
+dynamic:
+	for f in `ls *.c`; do \
+		$(CC) $(CFLAGS) -fPIC -c $$f -I../include; \
+	done
+	$(CC) $(CFLAGS) -shared -o $(DYNAMIC_LIB) *.o -I../include
+
+static: compile
+	$(AR) rcs -o libalgobstreei.a *.o
 
 compile_debug: CFLAGS := $(CFLAGS_DEBUG)
 compile_debug: compile
@@ -36,4 +51,4 @@ trim:
 	perl -lpi -e "s{\s+$$}{}g;" *
 
 clean:
-	$(RM) *.obj *.o
+	$(RM) $(DYNAMIC_LIB) libalgobstreei.a *.obj *.o

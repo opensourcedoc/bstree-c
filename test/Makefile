@@ -8,10 +8,7 @@ else
 	CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
 endif
 
-ifndef CFLAGS
-	CFLAGS=$(CFLAGS_DEBUG)
-endif
-
+CFLAGS=$(CFLAGS_DEBUG)
 MEM_CHECK=valgrind --quiet
 SOURCE_DIR=../src
 OBJS=test_bstree.o test_manipulation.o test_traversal.o
@@ -19,11 +16,11 @@ TEST_PROG=test_bstree.out
 
 .PHONY: memo test compile trim clean
 
-memo:
+memo: compile
 	$(MEM_CHECK) ./$(TEST_PROG)
 	echo $$?
 
-test:
+test: compile
 	./$(TEST_PROG)
 	echo $$?
 
