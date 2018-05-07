@@ -1,7 +1,9 @@
-ifeq ($(TARGET),Debug)
-	CFLAGS=-Wall -Wextra -g -std=c99
-else
-	CFLAGS=-Wall -Wextra -O2 -std=c99
+ifndef CFLAGS
+	ifeq ($(TARGET),Debug)
+		CFLAGS=-Wall -Wextra -g -std=c99
+	else
+		CFLAGS=-Wall -Wextra -O2 -std=c99
+	endif
 endif
 
 MEM_CHECK=valgrind --quiet
