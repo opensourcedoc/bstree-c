@@ -26,6 +26,8 @@ else
 	DYNAMIC_LIB=libalgobstreei.so
 endif
 
+STATIC_LIB=libalgobstreei.a
+
 .PHONY: all compile_debug compile trim clean
 
 all: dynamic
@@ -37,7 +39,7 @@ dynamic:
 	$(CC) $(CFLAGS) -shared -o $(DYNAMIC_LIB) *.o -I../include
 
 static: compile
-	$(AR) rcs -o libalgobstreei.a *.o
+	$(AR) rcs -o $(STATIC_LIB) *.o
 
 compile_debug: CFLAGS := $(CFLAGS_DEBUG)
 compile_debug: compile
@@ -51,4 +53,4 @@ trim:
 	perl -lpi -e "s{\s+$$}{}g;" *
 
 clean:
-	$(RM) $(DYNAMIC_LIB) libalgobstreei.a *.obj *.o
+	$(RM) $(DYNAMIC_LIB) $(STATIC_LIB) *.obj *.o
