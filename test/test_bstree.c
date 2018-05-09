@@ -13,7 +13,7 @@
         } \
     }
 
-int main()
+int main(void)
 {
     // Test tree manipulation.
     TEST(test_tree_is_empty());

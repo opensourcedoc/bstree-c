@@ -21,7 +21,7 @@ struct bstiter_int {
 };
 
 static SNodeInt * snode_new(NodeInt *value);
-static BSTIterInt * bstiter_new();
+static BSTIterInt * bstiter_new(void);
 static bool bstiter_is_empty(BSTIterInt *self);
 static SNodeInt * bstiter_peek_front(BSTIterInt* self);
 static SNodeInt * bstiter_peek_rear(BSTIterInt *self);
@@ -458,7 +458,7 @@ static SNodeInt * snode_new(NodeInt *value)
     return sn;
 }
 
-static BSTIterInt * bstiter_new()
+static BSTIterInt * bstiter_new(void)
 {
     BSTIterInt *iter = malloc(sizeof(BSTIterInt));
     if (!iter) {

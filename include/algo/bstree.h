@@ -7,7 +7,7 @@ typedef struct bstree_int BSTreeInt;
 
 #include "bstiter.h"
 
-BSTreeInt * algo_bstree_int_new();
+BSTreeInt * algo_bstree_int_new(void);
 bool algo_bstree_int_is_empty(BSTreeInt *self);
 bool algo_bstree_int_find(BSTreeInt *self, int value);
 int algo_bstree_int_min(BSTreeInt *self);

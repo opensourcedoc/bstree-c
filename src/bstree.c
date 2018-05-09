@@ -13,7 +13,7 @@ int node_data(NodeInt *node)
     return node->data;
 }
 
-BSTreeInt * algo_bstree_int_new()
+BSTreeInt * algo_bstree_int_new(void)
 {
     BSTreeInt *t = malloc(sizeof(BSTreeInt));
     if (!t) {

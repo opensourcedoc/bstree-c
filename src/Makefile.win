@@ -36,7 +36,7 @@ endif
 
 dynamic:
 ifeq ($(CC),cl)
-	for %%x in (*.c) do $(CC) $(CFLAGS)  /I..\include /c %%x
+	for %%x in (*.c) do $(CC) $(CFLAGS) /F 8192 /I..\include /c %%x
 	link /DLL /out:$(DYNAMIC_LIB) *.obj
 else
 	for %%x in (*.c) do $(CC) $(CFLAGS) -fPIC -c %%x -I"..\include"
@@ -54,7 +54,7 @@ compile_debug: CFLAGS := $(CFLAGS_DEBUG)
 compile_debug: $(OBJS)
 
 %.obj: %.c
-	$(CC) $(CFLAGS) /I..\include /c $<
+	$(CC) $(CFLAGS) /F 8192 /I..\include /c $<
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -I"..\include"

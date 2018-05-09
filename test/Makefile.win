@@ -24,9 +24,9 @@ test: $(TEST_PROG)
 
 $(TEST_PROG): $(OBJS)
 ifeq ($(CC),cl)
-	$(CC) $(CFLAGS) /Fe:$(TEST_PROG) /I..\include *.obj $(SOURCE_DIR)\\*.obj
+	$(CC) $(CFLAGS) /Fe:$(TEST_PROG) /F 8192 /I..\include *.obj $(SOURCE_DIR)\\*.obj
 else
-	$(CC) $(CFLAGS) -o $(TEST_PROG) *.o $(SOURCE_DIR)\\*.o -I"..\include"
+	$(CC) $(CFLAGS) -o $(TEST_PROG) -Wl,--stack,8388608 *.o $(SOURCE_DIR)\\*.o -I"..\include"
 endif
 
 %.obj: %.c
