@@ -1,0 +1,68 @@
+ifeq ($(CC),cl)
+	CFLAGS_DEBUG=/Wall /sdl /Zi
+else
+	CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
+endif
+
+ifeq ($(TARGET),Debug)
+	CFLAGS=$(CFLAGS_DEBUG)
+else
+	ifeq ($(CC),cl)
+		CFLAGS=/Wall /sdl /O2
+	else
+		CFLAGS=-Wall -Wextra -O2 -std=c99
+	endif
+endif
+
+ifeq ($(CC),cl)
+	OBJS=bstree.obj bstiter.obj bstnode.obj
+else
+	OBJS=bstree.o bstiter.o bstnode.o
+endif
+
+ifeq ($(CC),cl)
+	DYNAMIC_LIB=algobstreei.dll
+else
+	DYNAMIC_LIB=libalgobstreei.dll
+endif
+
+ifeq ($(CC),cl)
+	STATIC_LIB=algobstreei.lib
+else
+	STATIC_LIB=libalgobstreei.a
+endif
+
+.PHONY: dynamic static trim clean
+
+dynamic:
+ifeq ($(CC),cl)
+	for %%x in (*.c) do $(CC) $(CFLAGS)  /I..\include /c %%x
+	link /DLL /out:$(DYNAMIC_LIB) *.obj
+else
+	for %%x in (*.c) do $(CC) $(CFLAGS) -fPIC -c %%x -I"..\include"
+	$(CC) $(CFLAGS) -shared -o $(DYNAMIC_LIB) *.o -I"..\include"
+endif
+
+static: $(OBJS)
+ifeq ($(CC),cl)
+	lib /out:$(STATIC_LIB) *.obj
+else
+	$(AR) rcs -o $(STATIC_LIB) *.o
+endif
+
+compile_debug: CFLAGS := $(CFLAGS_DEBUG)
+compile_debug: $(OBJS)
+
+%.obj: %.c
+	$(CC) $(CFLAGS) /I..\include /c $<
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -I"..\include"
+
+trim:
+	for %%x in (*.c) do perl -lp -i~ -e "s{\s+$$}{}g;" %%x
+	for %%x in (*.c) do perl -lp -i~ -e "s{\s+$$}{}g;" %%x
+	perl -lp -i~ -e "s{\s+$$}{}g;" Makefile Makefile.win
+
+clean:
+	$(RM) *.dll *.lib *.a *.obj *.o

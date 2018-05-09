@@ -1,0 +1,44 @@
+ifeq ($(CC),cl)
+	CFLAGS=/Wall /sdl /Zi
+else
+	CFLAGS=-Wall -Wextra -g -std=c99
+endif
+
+ifeq ($(CC),cl)
+	OBJS=test_bstree.obj test_manipulation.obj test_traversal.obj
+else
+	OBJS=test_bstree.o test_manipulation.o test_traversal.o
+endif
+
+SOURCE_DIR=..\src
+TEST_PROG=test_bstree.exe
+
+.PHONY: memo test compile trim clean
+
+memo:
+	@echo "Not supported"
+
+test: $(TEST_PROG)
+	.\$(TEST_PROG)
+	echo %errorlevel%
+
+$(TEST_PROG): $(OBJS)
+ifeq ($(CC),cl)
+	$(CC) $(CFLAGS) /Fe:$(TEST_PROG) /I..\include *.obj $(SOURCE_DIR)\\*.obj
+else
+	$(CC) $(CFLAGS) -o $(TEST_PROG) *.o $(SOURCE_DIR)\\*.o -I"..\include"
+endif
+
+%.obj: %.c
+	$(CC) $(CFLAGS) /I..\include /c $<
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -I"..\include"
+
+trim:
+	for %%x in (*.h) do perl -lp -i~ -e "s{\s+$$}{}g;" %%x
+	for %%x in (*.c) do perl -lp -i~ -e "s{\s+$$}{}g;" %%x
+	perl -lp -i~ -e "s{\s+$$}{}g;" Makefile.win Makefile
+
+clean:
+	$(RM) $(TEST_PROG) *.obj *.o

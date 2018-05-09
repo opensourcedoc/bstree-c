@@ -36,7 +36,7 @@ SOURCE_DIR=src
 TEST_DIR=test
 
 ifeq ($(detected_OS),Windows)
-	CONFIG=Makefile_win
+	CONFIG=Makefile.win
 else
 	CONFIG=Makefile
 endif
@@ -58,9 +58,6 @@ memo: trim
 test: trim
 	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) compile_debug
 	$(MAKE) -C $(TEST_DIR) -f $(CONFIG) test
-
-compile:
-	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) compile
 
 trim:
 	$(MAKE) -C $(SOURCE_DIR) -f $(CONFIG) trim
