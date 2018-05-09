@@ -4,7 +4,7 @@
 #include "algo/bstree.h"
 #include "test_manipulation.h"
 
-bool test_tree_is_empty()
+bool test_tree_is_empty(void)
 {
     bool failed = false;
 
@@ -30,7 +30,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_insert()
+bool test_tree_insert(void)
 {
     bool failed = false;
 
@@ -81,7 +81,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_min()
+bool test_tree_min(void)
 {
     bool failed = false;
 
@@ -111,7 +111,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_max()
+bool test_tree_max(void)
 {
     bool failed = false;
 
@@ -141,7 +141,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_delete_leaf()
+bool test_tree_delete_leaf(void)
 {
     bool failed = false;
 
@@ -185,7 +185,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_delete_one_child()
+bool test_tree_delete_one_child(void)
 {
     bool failed = false;
 
@@ -229,7 +229,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_delete_two_childs()
+bool test_tree_delete_two_childs(void)
 {
     bool failed = false;
 

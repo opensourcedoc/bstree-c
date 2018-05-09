@@ -4,7 +4,7 @@
 #include "algo/bstree.h"
 #include "test_traversal.h"
 
-bool test_tree_pre_order()
+bool test_tree_pre_order(void)
 {
     bool failed = false;
 
@@ -32,7 +32,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_in_order()
+bool test_tree_in_order(void)
 {
     bool failed = false;
 
@@ -60,7 +60,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_post_order()
+bool test_tree_post_order(void)
 {
     bool failed = false;
 
@@ -88,7 +88,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_pre_order_iter_r()
+bool test_tree_pre_order_iter_r(void)
 {
     bool failed = false;
 
@@ -133,7 +133,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_in_order_iter_r()
+bool test_tree_in_order_iter_r(void)
 {
     bool failed = false;
 
@@ -178,7 +178,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_post_order_iter_r()
+bool test_tree_post_order_iter_r(void)
 {
     bool failed = false;
 
@@ -223,7 +223,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_pre_order_iter()
+bool test_tree_pre_order_iter(void)
 {
     bool failed = false;
 
@@ -268,7 +268,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_in_order_iter()
+bool test_tree_in_order_iter(void)
 {
     bool failed = false;
 
@@ -313,7 +313,7 @@ BSTREE_FREE:
     return true;
 }
 
-bool test_tree_post_order_iter()
+bool test_tree_post_order_iter(void)
 {
     bool failed = false;
 
