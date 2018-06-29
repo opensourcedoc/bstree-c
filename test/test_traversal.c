@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include "algo/bstree.h"
+#include "algo/bstiter.h"
 #include "test_traversal.h"
 
 bool test_tree_pre_order(void)

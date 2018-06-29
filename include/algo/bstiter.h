@@ -3,6 +3,10 @@
 
 #include "bstree.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct bstiter_int BSTIterInt;
 
 // Recursive Tree Traversal
@@ -41,5 +45,9 @@ bool algo_bstree_int_post_order_next(BSTIterInt *iter, int *out);
 bool algo_bstree_int_post_order_end(BSTIterInt *iter);
 
 void algo_bstiter_int_free(void *iter);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // BSTITER_H
