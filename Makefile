@@ -41,6 +41,7 @@ else
 	CONFIG=Makefile
 endif
 
+
 .PHONY: all dynamic memo test compile_debug trim clean
 
 all: dynamic
