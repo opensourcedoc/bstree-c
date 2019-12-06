@@ -1,14 +1,14 @@
 ifeq ($(detected_OS),Darwin)
 	ifeq ($(CC),clang)
-		CFLAGS_DEBUG=-O1 -Wall -Wextra -g -std=c99 -fsanitize=address -fno-omit-frame-pointer
+		CFLAGS_DEBUG=-O1 -Wall -Wextra -g -std=c11 -fsanitize=address -fno-omit-frame-pointer
 	else
-		CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
+		CFLAGS_DEBUG=-Wall -Wextra -g -std=c11
 	endif
 else
-	CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
+	CFLAGS_DEBUG=-Wall -Wextra -g -std=c11
 endif
 
-CFLAGS_RELEASE=-Wall -Wextra -O2 -std=c99
+CFLAGS_RELEASE=-Wall -Wextra -O2 -std=c11
 
 ifndef CFLAGS
 	ifeq ($(TARGET),Debug)
@@ -27,6 +27,7 @@ else
 endif
 
 STATIC_LIB=libalgobstreei.a
+
 
 .PHONY: all compile_debug compile trim clean
 
