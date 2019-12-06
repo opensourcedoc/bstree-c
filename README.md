@@ -2,10 +2,10 @@
 
 This repo demos a naive (not balanced)  binary search tree in C.
 
-## Author
+## Warning
 
-Michael Chen.
+For demo only. DON'T USE IT ON PRODUCTION ENVIRONMENT.
 
-## License
+## Copyright
 
-MIT.
+Copyright (c) 2019 Michael Chen. Licensed under MIT.
