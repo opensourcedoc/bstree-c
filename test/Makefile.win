@@ -1,7 +1,7 @@
 ifeq ($(CC),cl)
 	CFLAGS=/W4 /sdl /Zi
 else
-	CFLAGS=-Wall -Wextra -g -std=c99
+	CFLAGS=-Wall -Wextra -g -std=c11
 endif
 
 ifeq ($(CC),cl)
@@ -12,6 +12,7 @@ endif
 
 SOURCE_DIR=..\src
 TEST_PROG=test_bstree.exe
+
 
 .PHONY: memo test compile trim clean
 
