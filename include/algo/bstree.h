@@ -1,5 +1,5 @@
-#ifndef BSTREE_H
-#define BSTREE_H
+#ifndef ALGO_BSTREE_H
+#define ALGO_BSTREE_H
 
 #ifndef __cplusplus
     #include <stdbool.h>
@@ -24,4 +24,4 @@ void algo_bstree_int_free(void *self);
 }
 #endif
 
-#endif // BSTREE_H
+#endif  /* ALGO_BSTREE_H */
