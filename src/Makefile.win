@@ -1,16 +1,16 @@
 ifeq ($(CC),cl)
-	CFLAGS_DEBUG=/Wall /sdl /Zi
+	CFLAGS_DEBUG=/W4 /sdl /Zi
 else
-	CFLAGS_DEBUG=-Wall -Wextra -g -std=c99
+	CFLAGS_DEBUG=-Wall -Wextra -g -std=c11
 endif
 
 ifeq ($(TARGET),Debug)
 	CFLAGS=$(CFLAGS_DEBUG)
 else
 	ifeq ($(CC),cl)
-		CFLAGS=/Wall /sdl /O2
+		CFLAGS=/W4 /sdl /O2
 	else
-		CFLAGS=-Wall -Wextra -O2 -std=c99
+		CFLAGS=-Wall -Wextra -O2 -std=c11
 	endif
 endif
 
@@ -31,6 +31,7 @@ ifeq ($(CC),cl)
 else
 	STATIC_LIB=libalgobstreei.a
 endif
+
 
 .PHONY: dynamic static trim clean
 
