@@ -1,5 +1,5 @@
 ifeq ($(CC),cl)
-	CFLAGS=/Wall /sdl /Zi
+	CFLAGS=/W4 /sdl /Zi
 else
 	CFLAGS=-Wall -Wextra -g -std=c99
 endif
