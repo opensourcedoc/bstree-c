@@ -1,5 +1,5 @@
-#ifndef BSTITER_H
-#define BSTITER_H
+#ifndef ALGO_BSTITER_H
+#define ALGO_BSTITER_H
 
 #include "bstree.h"
 
@@ -50,4 +50,4 @@ void algo_bstiter_int_free(void *iter);
 }
 #endif
 
-#endif  // BSTITER_H
+#endif  /* ALGO_BSTITER_H */
