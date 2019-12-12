@@ -28,6 +28,8 @@ endif
 
 STATIC_LIB=libalgobstreei.a
 
+DIST_DIR=../dist
+
 
 .PHONY: all compile_debug compile trim clean
 
@@ -37,10 +39,14 @@ dynamic:
 	for f in `ls *.c`; do \
 		$(CC) $(CFLAGS) -fPIC -c $$f -I../include; \
 	done
-	$(CC) $(CFLAGS) -shared -o $(DYNAMIC_LIB) *.o -I../include
+	$(CC) $(CFLAGS) -shared -o $(DIST_DIR)/$(DYNAMIC_LIB) *.o -I../include
 
 static: compile
-	$(AR) rcs -o $(STATIC_LIB) *.o
+ifeq ($(detected_OS),Darwin)
+	libtool -static -o $(DIST_DIR)/$(STATIC_LIB) *.o
+else
+	$(AR) rcs -o $(DIST_DIR)/$(STATIC_LIB) *.o
+endif
 
 compile_debug: CFLAGS := $(CFLAGS_DEBUG)
 compile_debug: compile
@@ -54,4 +60,4 @@ trim:
 	perl -lpi -e "s{\s+$$}{}g;" *
 
 clean:
-	$(RM) $(DYNAMIC_LIB) $(STATIC_LIB) *.obj *.o
+	$(RM) $(DIST_DIR)/$(DYNAMIC_LIB) $(DIST_DIR)/$(STATIC_LIB) -- *.obj *.o
