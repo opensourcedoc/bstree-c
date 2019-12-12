@@ -9,15 +9,15 @@
 extern "C" {
 #endif
 
-typedef struct bstree_int BSTreeInt;
+typedef struct bstree_int_t bstree_int_t;
 
-BSTreeInt * algo_bstree_int_new(void);
-bool algo_bstree_int_is_empty(BSTreeInt *self);
-bool algo_bstree_int_find(BSTreeInt *self, int value);
-int algo_bstree_int_min(BSTreeInt *self);
-int algo_bstree_int_max(BSTreeInt *self);
-bool algo_bstree_int_insert(BSTreeInt *self, int value);
-bool algo_bstree_int_delete(BSTreeInt *self, int value);
+bstree_int_t * algo_bstree_int_new(void);
+bool algo_bstree_int_is_empty(bstree_int_t *self);
+bool algo_bstree_int_find(bstree_int_t *self, int value);
+int algo_bstree_int_min(bstree_int_t *self);
+int algo_bstree_int_max(bstree_int_t *self);
+bool algo_bstree_int_insert(bstree_int_t *self, int value);
+bool algo_bstree_int_delete(bstree_int_t *self, int value);
 void algo_bstree_int_free(void *self);
 
 #ifdef __cplusplus

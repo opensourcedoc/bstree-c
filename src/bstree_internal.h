@@ -3,7 +3,7 @@
 
 #include "bstnode.h"
 
-struct bstree_int {
+struct bstree_int_t {
     NodeInt *root;
 };
 

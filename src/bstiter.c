@@ -32,7 +32,7 @@ static NodeInt * bstiter_pop(BSTIterInt *self);
 
 static void _algo_bstree_int_pre_order(NodeInt *node);
 
-void algo_bstree_int_pre_order(BSTreeInt *self)
+void algo_bstree_int_pre_order(bstree_int_t *self)
 {
     assert(self);
 
@@ -54,7 +54,7 @@ static void _algo_bstree_int_pre_order(NodeInt *node)
 
 static void _algo_bstree_int_in_order(NodeInt *node);
 
-void algo_bstree_int_in_order(BSTreeInt *self)
+void algo_bstree_int_in_order(bstree_int_t *self)
 {
     assert(self);
 
@@ -76,7 +76,7 @@ static void _algo_bstree_int_in_order(NodeInt *node)
 
 static void _algo_bstree_int_post_order(NodeInt *node);
 
-void algo_bstree_int_post_order(BSTreeInt *self)
+void algo_bstree_int_post_order(bstree_int_t *self)
 {
     assert(self);
 
@@ -98,7 +98,7 @@ static void _algo_bstree_int_post_order(NodeInt *node)
 
 static void _algo_bstree_int_pre_order_iter(BSTIterInt *iter, NodeInt *node);
 
-BSTIterInt * algo_bstree_int_pre_order_start_r(BSTreeInt *tree)
+BSTIterInt * algo_bstree_int_pre_order_start_r(bstree_int_t *tree)
 {
     assert(tree);
 
@@ -142,7 +142,7 @@ bool algo_bstree_int_pre_order_end_r(BSTIterInt *iter)
 
 static void _algo_bstree_int_in_order_iter(BSTIterInt *iter, NodeInt *node);
 
-BSTIterInt * algo_bstree_int_in_order_start_r(BSTreeInt *tree)
+BSTIterInt * algo_bstree_int_in_order_start_r(bstree_int_t *tree)
 {
     assert(tree);
 
@@ -186,7 +186,7 @@ bool algo_bstree_int_in_order_end_r(BSTIterInt *iter)
 
 static void _algo_bstree_int_post_order_iter(BSTIterInt *iter, NodeInt *node);
 
-BSTIterInt * algo_bstree_int_post_order_start_r(BSTreeInt *tree)
+BSTIterInt * algo_bstree_int_post_order_start_r(bstree_int_t *tree)
 {
     assert(tree);
 
@@ -228,7 +228,7 @@ bool algo_bstree_int_post_order_end_r(BSTIterInt *iter)
     return bstiter_is_empty(iter);
 }
 
-BSTIterInt * algo_bstree_int_pre_order_start(BSTreeInt *tree)
+BSTIterInt * algo_bstree_int_pre_order_start(bstree_int_t *tree)
 {
     assert(tree);
 
@@ -278,7 +278,7 @@ bool algo_bstree_int_pre_order_end(BSTIterInt *iter)
     return bstiter_is_empty(iter);
 }
 
-BSTIterInt * algo_bstree_int_in_order_start(BSTreeInt *tree)
+BSTIterInt * algo_bstree_int_in_order_start(bstree_int_t *tree)
 {
     assert(tree);
 
@@ -329,7 +329,7 @@ bool algo_bstree_int_in_order_end(BSTIterInt *iter)
     return bstiter_is_empty(iter);
 }
 
-BSTIterInt * algo_bstree_int_post_order_start(BSTreeInt *tree)
+BSTIterInt * algo_bstree_int_post_order_start(bstree_int_t *tree)
 {
     assert(tree);
 

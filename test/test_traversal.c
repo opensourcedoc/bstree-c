@@ -9,7 +9,7 @@ bool test_tree_pre_order(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -37,7 +37,7 @@ bool test_tree_in_order(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -65,7 +65,7 @@ bool test_tree_post_order(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -93,7 +93,7 @@ bool test_tree_pre_order_iter_r(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -138,7 +138,7 @@ bool test_tree_in_order_iter_r(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -183,7 +183,7 @@ bool test_tree_post_order_iter_r(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -228,7 +228,7 @@ bool test_tree_pre_order_iter(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -273,7 +273,7 @@ bool test_tree_in_order_iter(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 
@@ -318,7 +318,7 @@ bool test_tree_post_order_iter(void)
 {
     bool failed = false;
 
-    BSTreeInt *tr = algo_bstree_int_new();
+    bstree_int_t *tr = algo_bstree_int_new();
 
     int in[] = {4, 2, 6, 1, 3, 5, 7};
 

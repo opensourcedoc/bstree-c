@@ -13,9 +13,9 @@ int node_data(NodeInt *node)
     return node->data;
 }
 
-BSTreeInt * algo_bstree_int_new(void)
+bstree_int_t * algo_bstree_int_new(void)
 {
-    BSTreeInt *t = malloc(sizeof(BSTreeInt));
+    bstree_int_t *t = malloc(sizeof(bstree_int_t));
     if (!t) {
         return t;
     }
@@ -25,7 +25,7 @@ BSTreeInt * algo_bstree_int_new(void)
     return t;
 }
 
-bool algo_bstree_int_is_empty(BSTreeInt* self)
+bool algo_bstree_int_is_empty(bstree_int_t* self)
 {
     assert(self);
 
@@ -34,7 +34,7 @@ bool algo_bstree_int_is_empty(BSTreeInt* self)
 
 static bool _algo_bstree_int_find(NodeInt *node, int value);
 
-bool algo_bstree_int_find(BSTreeInt *self, int value)
+bool algo_bstree_int_find(bstree_int_t *self, int value)
 {
     assert(self);
 
@@ -58,7 +58,7 @@ bool _algo_bstree_int_find(NodeInt *node, int value)
 
 static int _algo_bstree_int_min(NodeInt *node);
 
-int algo_bstree_int_min(BSTreeInt *self)
+int algo_bstree_int_min(bstree_int_t *self)
 {
     assert(!algo_bstree_int_is_empty(self));
 
@@ -76,7 +76,7 @@ static int _algo_bstree_int_min(NodeInt *node)
     return node->data;
 }
 
-int algo_bstree_int_max(BSTreeInt *self)
+int algo_bstree_int_max(bstree_int_t *self)
 {
     assert(!algo_bstree_int_is_empty(self));
 
@@ -90,7 +90,7 @@ int algo_bstree_int_max(BSTreeInt *self)
 
 static bool _algo_bstree_int_insert(NodeInt **node, int value);
 
-bool algo_bstree_int_insert(BSTreeInt *self, int value)
+bool algo_bstree_int_insert(bstree_int_t *self, int value)
 {
     assert(self);
 
@@ -118,7 +118,7 @@ static bool _algo_bstree_int_insert(NodeInt **node, int value)
 
 static bool _algo_bstree_int_delete(NodeInt **node, int value);
 
-bool algo_bstree_int_delete(BSTreeInt *self, int value)
+bool algo_bstree_int_delete(bstree_int_t *self, int value)
 {
     if (algo_bstree_int_is_empty(self)) {
         return false;
@@ -171,7 +171,7 @@ void algo_bstree_int_free(void *self)
         return;
     }
 
-    _algo_bstree_int_free(((BSTreeInt *) self)->root);
+    _algo_bstree_int_free(((bstree_int_t *) self)->root);
     free(self);
 }
 
