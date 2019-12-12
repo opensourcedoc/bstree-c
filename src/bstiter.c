@@ -9,7 +9,7 @@
 typedef struct snode_int_t snode_int_t;
 
 struct snode_int_t {
-    NodeInt *data;
+    node_int_t *data;
     snode_int_t *next;
     snode_int_t *prev;
 };
@@ -20,17 +20,17 @@ struct bstiter_int_t {
     snode_int_t *tail;
 };
 
-static snode_int_t * snode_new(NodeInt *value);
+static snode_int_t * snode_new(node_int_t *value);
 static bstiter_int_t * bstiter_new(void);
 static bool bstiter_is_empty(bstiter_int_t *self);
 static snode_int_t * bstiter_peek_front(bstiter_int_t* self);
 static snode_int_t * bstiter_peek_rear(bstiter_int_t *self);
-static bool bstiter_unshift(bstiter_int_t *self, NodeInt *data);
-static NodeInt * bstiter_shift(bstiter_int_t *self);
-static bool bstiter_push(bstiter_int_t *self, NodeInt *data);
-static NodeInt * bstiter_pop(bstiter_int_t *self);
+static bool bstiter_unshift(bstiter_int_t *self, node_int_t *data);
+static node_int_t * bstiter_shift(bstiter_int_t *self);
+static bool bstiter_push(bstiter_int_t *self, node_int_t *data);
+static node_int_t * bstiter_pop(bstiter_int_t *self);
 
-static void _algo_bstree_int_pre_order(NodeInt *node);
+static void _algo_bstree_int_pre_order(node_int_t *node);
 
 void algo_bstree_int_pre_order(bstree_int_t *self)
 {
@@ -41,7 +41,7 @@ void algo_bstree_int_pre_order(bstree_int_t *self)
     printf("\n");
 }
 
-static void _algo_bstree_int_pre_order(NodeInt *node)
+static void _algo_bstree_int_pre_order(node_int_t *node)
 {
     if (!node) {
         return;
@@ -52,7 +52,7 @@ static void _algo_bstree_int_pre_order(NodeInt *node)
     _algo_bstree_int_pre_order(node->right);
 }
 
-static void _algo_bstree_int_in_order(NodeInt *node);
+static void _algo_bstree_int_in_order(node_int_t *node);
 
 void algo_bstree_int_in_order(bstree_int_t *self)
 {
@@ -63,7 +63,7 @@ void algo_bstree_int_in_order(bstree_int_t *self)
     printf("\n");
 }
 
-static void _algo_bstree_int_in_order(NodeInt *node)
+static void _algo_bstree_int_in_order(node_int_t *node)
 {
     if (!node) {
         return;
@@ -74,7 +74,7 @@ static void _algo_bstree_int_in_order(NodeInt *node)
     _algo_bstree_int_in_order(node->right);
 }
 
-static void _algo_bstree_int_post_order(NodeInt *node);
+static void _algo_bstree_int_post_order(node_int_t *node);
 
 void algo_bstree_int_post_order(bstree_int_t *self)
 {
@@ -85,7 +85,7 @@ void algo_bstree_int_post_order(bstree_int_t *self)
     printf("\n");
 }
 
-static void _algo_bstree_int_post_order(NodeInt *node)
+static void _algo_bstree_int_post_order(node_int_t *node)
 {
     if (!node) {
         return;
@@ -96,7 +96,7 @@ static void _algo_bstree_int_post_order(NodeInt *node)
     printf("%d ", node->data);
 }
 
-static void _algo_bstree_int_pre_order_iter(bstiter_int_t *iter, NodeInt *node);
+static void _algo_bstree_int_pre_order_iter(bstiter_int_t *iter, node_int_t *node);
 
 bstiter_int_t * algo_bstree_int_pre_order_start_r(bstree_int_t *tree)
 {
@@ -112,7 +112,7 @@ bstiter_int_t * algo_bstree_int_pre_order_start_r(bstree_int_t *tree)
     return iter;
 }
 
-static void _algo_bstree_int_pre_order_iter(bstiter_int_t *iter, NodeInt *node)
+static void _algo_bstree_int_pre_order_iter(bstiter_int_t *iter, node_int_t *node)
 {
     if (!node) {
         return;
@@ -125,7 +125,7 @@ static void _algo_bstree_int_pre_order_iter(bstiter_int_t *iter, NodeInt *node)
 
 bool algo_bstree_int_pre_order_next_r(bstiter_int_t *iter, int *out)
 {
-    NodeInt *node = bstiter_shift(iter);
+    node_int_t *node = bstiter_shift(iter);
     if (!node) {
         return false;
     }
@@ -140,7 +140,7 @@ bool algo_bstree_int_pre_order_end_r(bstiter_int_t *iter)
     return bstiter_is_empty(iter);
 }
 
-static void _algo_bstree_int_in_order_iter(bstiter_int_t *iter, NodeInt *node);
+static void _algo_bstree_int_in_order_iter(bstiter_int_t *iter, node_int_t *node);
 
 bstiter_int_t * algo_bstree_int_in_order_start_r(bstree_int_t *tree)
 {
@@ -156,7 +156,7 @@ bstiter_int_t * algo_bstree_int_in_order_start_r(bstree_int_t *tree)
     return iter;
 }
 
-static void _algo_bstree_int_in_order_iter(bstiter_int_t *iter, NodeInt *node)
+static void _algo_bstree_int_in_order_iter(bstiter_int_t *iter, node_int_t *node)
 {
     if (!node) {
         return;
@@ -169,7 +169,7 @@ static void _algo_bstree_int_in_order_iter(bstiter_int_t *iter, NodeInt *node)
 
 bool algo_bstree_int_in_order_next_r(bstiter_int_t *iter, int *out)
 {
-    NodeInt *node = bstiter_shift(iter);
+    node_int_t *node = bstiter_shift(iter);
     if (!node) {
         return false;
     }
@@ -184,7 +184,7 @@ bool algo_bstree_int_in_order_end_r(bstiter_int_t *iter)
     return bstiter_is_empty(iter);
 }
 
-static void _algo_bstree_int_post_order_iter(bstiter_int_t *iter, NodeInt *node);
+static void _algo_bstree_int_post_order_iter(bstiter_int_t *iter, node_int_t *node);
 
 bstiter_int_t * algo_bstree_int_post_order_start_r(bstree_int_t *tree)
 {
@@ -200,7 +200,7 @@ bstiter_int_t * algo_bstree_int_post_order_start_r(bstree_int_t *tree)
     return iter;
 }
 
-static void _algo_bstree_int_post_order_iter(bstiter_int_t *iter, NodeInt *node)
+static void _algo_bstree_int_post_order_iter(bstiter_int_t *iter, node_int_t *node)
 {
     if (!node) {
         return;
@@ -213,7 +213,7 @@ static void _algo_bstree_int_post_order_iter(bstiter_int_t *iter, NodeInt *node)
 
 bool algo_bstree_int_post_order_next_r(bstiter_int_t *iter, int *out)
 {
-    NodeInt *node = bstiter_shift(iter);
+    node_int_t *node = bstiter_shift(iter);
     if (!node) {
         return false;
     }
@@ -251,7 +251,7 @@ bstiter_int_t * algo_bstree_int_pre_order_start(bstree_int_t *tree)
 
 bool algo_bstree_int_pre_order_next(bstiter_int_t *iter, int *out)
 {
-    NodeInt *n = bstiter_shift(iter);
+    node_int_t *n = bstiter_shift(iter);
     if (!n) {
         return false;
     }
@@ -287,7 +287,7 @@ bstiter_int_t * algo_bstree_int_in_order_start(bstree_int_t *tree)
         return iter;
     }
 
-    NodeInt *curr = tree->root;
+    node_int_t *curr = tree->root;
     while (curr) {
         if (!bstiter_unshift(iter, tree->root)) {
             algo_bstiter_int_free(iter);
@@ -305,7 +305,7 @@ bool algo_bstree_int_in_order_next(bstiter_int_t *iter, int *out)
 {
     assert(iter);
 
-    NodeInt *curr = bstiter_shift(iter);
+    node_int_t *curr = bstiter_shift(iter);
 
     *out = curr->data;
 
@@ -354,8 +354,8 @@ bstiter_int_t * algo_bstree_int_post_order_start(bstree_int_t *tree)
     }
 
     snode_int_t *temp;
-    NodeInt *prev = NULL;
-    NodeInt *curr;
+    node_int_t *prev = NULL;
+    node_int_t *curr;
     while (!bstiter_is_empty(st)) {
         temp = bstiter_peek_rear(st);
         curr = temp->data;
@@ -429,7 +429,7 @@ bool algo_bstree_int_post_order_next(bstiter_int_t *iter, int *out)
 {
     assert(iter);
 
-    NodeInt *n = bstiter_shift(iter);
+    node_int_t *n = bstiter_shift(iter);
     if (!n) {
         return false;
     }
@@ -444,7 +444,7 @@ bool algo_bstree_int_post_order_end(bstiter_int_t *iter)
     return bstiter_is_empty(iter);
 }
 
-static snode_int_t * snode_new(NodeInt *value)
+static snode_int_t * snode_new(node_int_t *value)
 {
     snode_int_t *sn = malloc(sizeof(bstiter_int_t));
     if (!sn) {
@@ -495,12 +495,12 @@ static snode_int_t * bstiter_peek_rear(bstiter_int_t *self)
     return self->tail;
 }
 
-static NodeInt * bstiter_shift(bstiter_int_t *self)
+static node_int_t * bstiter_shift(bstiter_int_t *self)
 {
     assert(!bstiter_is_empty(self));
 
     if (self->head == self->tail) {
-        NodeInt *popped = self->head->data;
+        node_int_t *popped = self->head->data;
 
         free(self->head);
         self->head = NULL;
@@ -510,7 +510,7 @@ static NodeInt * bstiter_shift(bstiter_int_t *self)
     }
 
     snode_int_t * curr = self->head;
-    NodeInt *popped = curr->data;
+    node_int_t *popped = curr->data;
 
     self->head = curr->next;
     free(curr);
@@ -519,7 +519,7 @@ static NodeInt * bstiter_shift(bstiter_int_t *self)
     return popped;
 }
 
-static bool bstiter_unshift(bstiter_int_t *self, NodeInt *value)
+static bool bstiter_unshift(bstiter_int_t *self, node_int_t *value)
 {
     assert(self);
 
@@ -541,7 +541,7 @@ static bool bstiter_unshift(bstiter_int_t *self, NodeInt *value)
     return true;
 }
 
-static bool bstiter_push(bstiter_int_t *self, NodeInt *data)
+static bool bstiter_push(bstiter_int_t *self, node_int_t *data)
 {
     assert(self);
 
@@ -563,12 +563,12 @@ static bool bstiter_push(bstiter_int_t *self, NodeInt *data)
     return true;
 }
 
-static NodeInt * bstiter_pop(bstiter_int_t *self)
+static node_int_t * bstiter_pop(bstiter_int_t *self)
 {
     assert(!bstiter_is_empty(self));
 
     if (self->head == self->tail) {
-        NodeInt *popped = self->tail->data;
+        node_int_t *popped = self->tail->data;
 
         free(self->tail);
         self->head = NULL;
@@ -578,7 +578,7 @@ static NodeInt * bstiter_pop(bstiter_int_t *self)
     }
 
     snode_int_t *curr = self->tail;
-    NodeInt *popped = curr->data;
+    node_int_t *popped = curr->data;
 
     self->tail = curr->prev;
     free(curr);

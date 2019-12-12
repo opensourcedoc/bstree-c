@@ -4,7 +4,7 @@
 #include "bstnode.h"
 
 struct bstree_int_t {
-    NodeInt *root;
+    node_int_t *root;
 };
 
 #endif  // BSTREE_INTERNAL_H
