@@ -446,7 +446,7 @@ bool algo_bstree_int_post_order_end(bstiter_int_t *iter)
 
 static snode_int_t * snode_new(node_int_t *value)
 {
-    snode_int_t *sn = (bstiter_int_t *) malloc(sizeof(bstiter_int_t));
+    snode_int_t *sn = (snode_int_t *) malloc(sizeof(snode_int_t));
     if (!sn) {
         return sn;
     }
